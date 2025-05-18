@@ -96,11 +96,38 @@ function renderTaskItem(arrList) {
       </button>
     </div>`;
   }
-  console.log(taskItem);
 }
 
-function removeTask() {}
-console.log(taskItem);
+function checkEmptyTasks() {
+  if (tasksArr.length === 0) {
+    tasks.innerHTML = `
+    <div class="tasks__empty">
+      <img src="/img/Detective-check-footprint.png" alt="empty" />
+      <h3>Empty...</h3>
+    </div>`;
+  }
+}
+function removeTask() {
+  tasks.addEventListener("click", (e) => {
+    const target = e.target;
+
+    // console.log(target.classList.contains("tasks__btn-trash"));
+
+    if (target.classList.contains("tasks__btn-trash")) {
+      const taskItem = target.closest(".tasks__item");
+      const taskText = taskItem.querySelector(".tasks__descr").textContent;
+      // Удаляем задачу из массива по значению
+      const index = tasksArr.indexOf(taskText);
+      if (index !== -1) {
+        tasksArr.splice(index, 1); // удаляем из массива
+      }
+      tasks.innerHTML = "";
+      renderFilterList(tasks, "li", tasksArr, "tasks__item");
+      renderTaskItem(tasksArr);
+      checkEmptyTasks();
+    }
+  });
+}
 
 renderFilterList(filterList, "li", filterListArr, "filter__item");
 renderFilterList(tasks, "li", tasksArr, "tasks__item");
@@ -114,3 +141,5 @@ renderFilterList(
 filterListFunc();
 filterListDoneFunc();
 addTask();
+
+removeTask();
