@@ -107,6 +107,7 @@ function checkEmptyTasks() {
     </div>`;
   }
 }
+
 function removeTask() {
   tasks.addEventListener("click", (e) => {
     const target = e.target;
