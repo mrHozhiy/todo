@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>To Do</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>TODO List</h1>
+      <div class="search__wrap">
+        <div class="search">
+          <input
+            type="search"
+            name="search"
+            id="search"
+            class="search__input"
+            placeholder="Input task"
+          />
+          <button class="search__btn"><i class="fi fi-rr-search"></i></button>
+        </div>
+        <div class="filter">
+          <div class="filter__selected">filter</div>
+          <ul class="filter__list">
+            <!-- <li class="filter__item">import</li>
+            <li class="filter__item">urgent</li>
+            <li class="filter__item">favor</li>
+            <li class="filter__item">special</li> -->
+          </ul>
+        </div>
+      </div>
+
+      <ul class="filter-done__wrap">
+        <!-- <li class="filter-done-item filter-done__all">all</li>
+        <li
+          class="filter-done-item filter-done__active filter-done-item__active"
+        >
+          active
+        </li>
+        <li class="filter-done-item filter-done__completed">completed</li> -->
+      </ul>
+
+      <ul class="tasks">
+        <!-- <li class="tasks__item"> -->
+        <!-- <div class="tasks__descr">task</div>
+          <div class="btns__wrap">
+            <button><i class="fi fi-rr-pencil tasks__btn-edit"></i></button>
+            <button><i class="fi fi-rr-heart tasks__btn-favorite"></i></button>
+            <button><i class="fi fi-rr-trash tasks__btn-trash"></i></button>
+          </div> -->
+        <!-- </li> -->
+        <!-- <li class="tasks__item">
+          <div class="tasks__descr">task</div>
+          <div class="btns__wrap">
+            <button><i class="fi fi-rr-pencil tasks__btn-edit"></i></button>
+            <button><i class="fi fi-rr-heart tasks__btn-favorite"></i></button>
+            <button><i class="fi fi-rr-trash tasks__btn-trash"></i></button>
+          </div>
+        </li>
+        <li class="tasks__item">
+          <div class="tasks__descr">task</div>
+          <div class="btns__wrap">
+            <button><i class="fi fi-rr-pencil tasks__btn-edit"></i></button>
+            <button><i class="fi fi-rr-heart tasks__btn-favorite"></i></button>
+            <button><i class="fi fi-rr-trash tasks__btn-trash"></i></button>
+          </div>
+        </li> -->
+      </ul>
+      <div class="add">
+        <input
+          type="text"
+          name="add"
+          id="add"
+          class="add__input"
+          placeholder="Add task"
+        />
+        <button class="add__btn"><i class="fi fi-rr-add"></i></button>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
