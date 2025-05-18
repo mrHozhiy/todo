@@ -22,11 +22,11 @@ const tasksArr = ["task 1", "task 2", "task 3", "task 4"];
 
 // let test = "";
 function addTask() {
-  console.log(tasksArr);
+  // console.log(tasksArr);
 
   addBtn.addEventListener("click", () => {
     // test = addInput.value;
-    console.log(addInput.value);
+    // console.log(addInput.value);
     tasksArr.push(addInput.value);
     console.log(tasksArr);
     tasks.innerHTML = "";
@@ -96,7 +96,11 @@ function renderTaskItem(arrList) {
       </button>
     </div>`;
   }
+  console.log(taskItem);
 }
+
+function removeTask() {}
+console.log(taskItem);
 
 renderFilterList(filterList, "li", filterListArr, "filter__item");
 renderFilterList(tasks, "li", tasksArr, "tasks__item");
