@@ -16,6 +16,10 @@ const taskItem = document.querySelectorAll(".tasks__item");
 const addInput = document.querySelector(".add__input");
 const addBtn = document.querySelector(".add__btn");
 
+// search
+
+const searchInput = document.querySelector(".search__input");
+
 const filterListArr = ["import", "urgent", "favor", "special"];
 const filterListCategoryArr = ["all", "active", "completed"];
 const tasksArr = ["task 1", "task 2", "task 3", "task 4"];
@@ -98,8 +102,8 @@ function renderTaskItem(arrList) {
   }
 }
 
-function checkEmptyTasks() {
-  if (tasksArr.length === 0) {
+function checkEmptyTasks(arr) {
+  if (arr.length === 0) {
     tasks.innerHTML = `
     <div class="tasks__empty">
       <img src="/img/Detective-check-footprint.png" alt="empty" />
@@ -125,9 +129,28 @@ function removeTask() {
       tasks.innerHTML = "";
       renderFilterList(tasks, "li", tasksArr, "tasks__item");
       renderTaskItem(tasksArr);
-      checkEmptyTasks();
+      checkEmptyTasks(tasksArr);
     }
   });
+}
+
+function searchTask() {
+  searchInput.addEventListener("input", () => {
+    console.log(searchInput);
+    let inputValue = searchInput.value.toLowerCase().trim();
+    console.log(inputValue);
+
+    const filteredTasks = tasksArr.filter((task) =>
+      // task.toLowerCase().includes(inputValue) поиск по словам
+      task.toLowerCase().startsWith(inputValue)
+    );
+
+    tasks.innerHTML = "";
+    renderFilterList(tasks, "li", filteredTasks, "tasks__item");
+    renderTaskItem(filteredTasks);
+    checkEmptyTasks(filteredTasks);
+  });
+  // console.log(searchInput);
 }
 
 renderFilterList(filterList, "li", filterListArr, "filter__item");
@@ -142,5 +165,5 @@ renderFilterList(
 filterListFunc();
 filterListDoneFunc();
 addTask();
-
+searchTask();
 removeTask();
