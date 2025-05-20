@@ -12,6 +12,7 @@
   --second-family: "Inter", sans-serif;
   --third-family: "Raleway", sans-serif;
   --font3: "Inria Serif", sans-serif;
+  --cursor-hand: url("/img/icons/cursor_hand.png") 8 8, auto;
 }
 
 ul li {
@@ -41,38 +42,85 @@ h1 {
   color: var(--black);
 }
 
-.search__wrap {
-  margin-top: 18px;
+.header__wrap {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-top: 18px;
 }
+
 .search {
   position: relative;
+  width: 100%;
 }
 
 .search__input {
+  border: 1px solid var(--purple);
+  border-radius: 5px;
+  padding: 8px 16px;
+  width: 100%;
+  height: 38px;
+  outline: none;
 }
 .search__input:focus {
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 2px 8px var(--purple);
+}
+
+.search__btn {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 8px 16px;
+  background: transparent;
+  border: none;
+  cursor: var(--cursor-hand);
+}
+
+.search__btn img {
+  width: 21px;
+  height: 21px;
+}
+
+/* header__groups */
+
+.header__groups {
+  display: flex;
+  gap: 16px;
 }
 
 /* filter search */
 
 .filter__selected {
-  text-transform: uppercase;
-  text-align: center;
-  width: 100%;
-  line-height: 2;
-  padding: 5px 15px;
-  border-radius: 5px;
-  font-size: 10px;
-  border: 1px solid #6c63ff;
 }
 
 .filter {
   position: relative;
-  /* width: 15%; */
+  border-radius: 5px;
+  padding: 10px;
+  padding-right: 43px;
+  height: 38px;
+  /* box-shadow: 0 0 4px 0 var(--purple); */
+  background: var(--purple);
   user-select: none;
+
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 100%;
+  text-transform: uppercase;
+  color: var(--white);
+
+  cursor: var(--cursor-hand);
+}
+.filter:after {
+  position: absolute;
+  top: 19px;
+  right: 9px;
+  content: "";
+  width: 9px;
+  height: 5px;
+  background: url("/img/icons/chevron-bottom.png") center center / cover;
 }
 
 .filter__list {
@@ -101,4 +149,22 @@ h1 {
 
 .filter__item:hover {
   background: #f0f0f0;
+}
+
+/* switch_theme */
+
+.switch_theme {
+  width: 38px;
+  height: 38px;
+  background: var(--purple);
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: var(--cursor-hand);
+  transition: all 0.3s ease;
+}
+.switch_theme:hover {
+  background: #5850dd;
+  box-shadow: 0 0 4px 0 var(--purple);
 }

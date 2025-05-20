@@ -25,9 +25,8 @@
     <div class="container">
       <header class="header">
         <h1>TODO List</h1>
-      </header>
-      <main>
-        <div class="search__wrap">
+
+        <div class="header__wrap">
           <form class="search">
             <input
               type="search"
@@ -36,15 +35,22 @@
               class="search__input"
               placeholder="Input task"
             />
-            <button class="search__btn">search</button>
+            <button class="search__btn">
+              <img src="/img/icons/search_icon.svg" alt="search_icon" />
+            </button>
           </form>
+          <div class="header__groups">
+            <div class="filter">
+              <div class="filter__selected">all</div>
+              <ul class="filter__list"></ul>
+            </div>
+            <div class="switch_theme">
+              <img src="/img/icons/dark_theme.svg" alt="switch_theme" />
+            </div>
+          </div>
         </div>
-        <div class="filter">
-          <div class="filter__selected">filter</div>
-          <ul class="filter__list"></ul>
-        </div>
-        <div class="switch_theme"></div>
-
+      </header>
+      <main>
         <ul class="notes"></ul>
         <div class="add">
           <button class="add__btn">add</button>
