@@ -4,67 +4,56 @@
   box-sizing: border-box;
 }
 
-body {
-  background-color: rgb(220, 233, 245);
-}
-
-.container {
-  max-width: 430px;
-  margin: 0 auto;
-  padding: 0 10px;
+:root {
+  --black: #252525;
+  --purple: #6c63ff;
+  --white: #f7f7f7;
+  --font-family: "Kanit", sans-serif;
+  --second-family: "Inter", sans-serif;
+  --third-family: "Raleway", sans-serif;
+  --font3: "Inria Serif", sans-serif;
 }
 
 ul li {
   list-style-type: none;
 }
 
+body {
+  font-family: "Kanit", sans-serif;
+}
+
+.container {
+  max-width: 750px;
+  margin: 0 auto;
+}
+
+.header {
+  padding-top: 40px;
+}
+
 h1 {
   text-transform: uppercase;
   text-align: center;
   margin-top: 20px;
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 26px;
+  color: var(--black);
 }
+
 .search__wrap {
-  margin-top: 30px;
+  margin-top: 18px;
   display: flex;
-  /* gap: 10px; */
   justify-content: space-around;
 }
 .search {
-  /* margin: 20px auto 0; */
-  width: 80%;
   position: relative;
 }
 
 .search__input {
-  width: 100%;
-  /* height: 40px; */
-  line-height: 2;
-  padding: 5px 15px;
-  border-radius: 5px;
-  font-size: 14px;
-  border: 1px solid #6c63ff;
-  outline: none;
 }
 .search__input:focus {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-}
-.search__btn {
-  position: absolute;
-  right: 0;
-  top: 0;
-  padding: 9px 15px 5px;
-  height: 40px;
-  width: 52px;
-  background-color: transparent;
-  border: none;
-  font-size: 20px;
-  cursor: pointer;
-  color: #6c63ff;
-  transition: all 0.1s ease;
-}
-.search__btn:hover {
-  color: #8a3c30;
-  font-size: 22px;
 }
 
 /* filter search */
@@ -82,15 +71,8 @@ h1 {
 
 .filter {
   position: relative;
-  width: 15%;
+  /* width: 15%; */
   user-select: none;
-}
-
-.filter__selected {
-  background: #03abff;
-  padding: 10px;
-  cursor: pointer;
-  border: 1px solid #6c63ff;
 }
 
 .filter__list {
@@ -98,7 +80,6 @@ h1 {
   top: 90%;
   left: -10px;
   width: 100%;
-  /* padding: 0 10px; */
   margin: 0 10px;
   text-align: center;
   border: 1px solid #6c63ff;
@@ -116,137 +97,8 @@ h1 {
 .filter__item {
   padding: 10px;
   cursor: pointer;
-  /* width: 100%; */
 }
 
 .filter__item:hover {
   background: #f0f0f0;
-}
-
-/* filter all active completed */
-.filter-done__wrap {
-  margin-top: 20px;
-  display: flex;
-  justify-content: space-around;
-}
-.filter-done-item {
-  width: 30%;
-  text-align: center;
-  padding: 10px;
-  text-transform: uppercase;
-  cursor: pointer;
-}
-.filter-done-item__active {
-  position: relative;
-}
-.filter-done-item__active:before {
-  content: "";
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: 0;
-  height: 1px;
-  width: 60%;
-  background-color: #6c63ff;
-}
-
-/* Tasks */
-
-.tasks {
-  margin: 40px auto 0;
-  width: 100%;
-}
-
-.tasks__empty {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.tasks__empty h3 {
-  margin-top: 30px;
-}
-
-.tasks__item {
-  height: 50px;
-  padding: 0 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid #6c63ff;
-  transition: all 0.3s ease;
-  color: #6c63ff;
-}
-.tasks__item:hover {
-  border-bottom: 1px solid #1e1890;
-  color: #1e1890;
-}
-
-.btns__wrap {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.btns__wrap button {
-  margin: 0 7px;
-  border: none;
-  background: transparent;
-  color: #6c63ff;
-  font-size: 18px;
-}
-.btns__wrap button i {
-  transition: all 0.3s ease;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.tasks__btn-edit:hover {
-  color: #24215e;
-}
-.tasks__btn-favorite:hover {
-  color: #ffff00;
-}
-.tasks__btn-trash:hover {
-  color: #ff0000;
-}
-
-/* button ADD */
-
-.add {
-  margin-top: 40px;
-  position: relative;
-}
-
-.add__input {
-  width: 100%;
-  height: 40px;
-  line-height: 2;
-  padding: 5px 15px;
-  border-radius: 5px;
-  font-size: 14px;
-  border: 1px solid #6c63ff;
-  outline: none;
-}
-.add__input:focus {
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-}
-.add__btn {
-  position: absolute;
-  right: 15px;
-  top: 57%;
-  transform: translateY(-50%);
-  /* padding: 9px 5px 5px; */
-  /* height: 40px; */
-  /* width: 52px; */
-  background-color: transparent;
-  border: none;
-  font-size: 25px;
-  cursor: pointer;
-  color: #6c63ff;
-  transition: all 0.1s ease;
-}
-.add__btn:hover {
-  color: #8a3c30;
-  /* font-size: 22px; */
 }

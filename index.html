@@ -3,46 +3,53 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
+      href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500&display=swap"
       rel="stylesheet"
-      href="https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css"
     />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+
     <link rel="stylesheet" href="style.css" />
     <title>To Do</title>
   </head>
   <body>
     <div class="container">
-      <h1>TODO List</h1>
-      <div class="search__wrap">
-        <div class="search">
-          <input
-            type="search"
-            name="search"
-            id="search"
-            class="search__input"
-            placeholder="Input task"
-          />
-          <button class="search__btn"><i class="fi fi-rr-search"></i></button>
+      <header class="header">
+        <h1>TODO List</h1>
+      </header>
+      <main>
+        <div class="search__wrap">
+          <form class="search">
+            <input
+              type="search"
+              name="search"
+              id="search"
+              class="search__input"
+              placeholder="Input task"
+            />
+            <button class="search__btn">search</button>
+          </form>
         </div>
         <div class="filter">
           <div class="filter__selected">filter</div>
           <ul class="filter__list"></ul>
         </div>
-      </div>
+        <div class="switch_theme"></div>
 
-      <ul class="filter-done__wrap"></ul>
-
-      <ul class="tasks"></ul>
-      <div class="add">
-        <input
-          type="text"
-          name="add"
-          id="add"
-          class="add__input"
-          placeholder="Add task"
-        />
-        <button class="add__btn"><i class="fi fi-rr-add"></i></button>
-      </div>
+        <ul class="notes"></ul>
+        <div class="add">
+          <button class="add__btn">add</button>
+        </div>
+      </main>
     </div>
 
     <script src="script.js"></script>
