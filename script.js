@@ -1,6 +1,7 @@
 // Filter category All completed active
-const filterDoneWrap = document.querySelector(".filter-done__wrap");
-
+const filter = document.querySelector(".filter");
+const filterSelected = document.querySelector(".filter__selected");
+const filterList = document.querySelector(".filter__list");
 // Tasks
 
 const notes = document.querySelector(".notes");
@@ -15,8 +16,28 @@ const addBtn = document.querySelector(".add__btn");
 
 const searchInput = document.querySelector(".search__input");
 
+// arrays
 const filterListCategoryArr = ["All", "Completed", "Incomplete"];
 const tasksArr = ["task 1", "task 2", "task 3", "task 4"];
+
+function filterListFunc() {
+  filter.addEventListener("click", () => {
+    filter.classList.toggle("open"); // открывает/закрывает список
+  });
+
+  const items = filter.querySelectorAll(".filter__item");
+
+  items.forEach((item) => {
+    item.addEventListener("click", (e) => {
+      filterSelected.textContent = item.textContent; // меняем выбранный текст
+      //   filter.classList.toggle("open"); // открывает/закрывает список
+      //   console.log(e.target);
+      //   filter.classList.remove("open"); // закрываем список
+    });
+  });
+}
+
+filterListFunc();
 
 // function addTask() {
 //   // console.log(tasksArr);
@@ -43,21 +64,6 @@ const tasksArr = ["task 1", "task 2", "task 3", "task 4"];
 //     parent.appendChild(item); // вставили в конец
 //     // console.log(item.textContent);
 //   }
-// }
-
-// function filterListFunc() {
-//   selected.addEventListener("click", () => {
-//     filter.classList.toggle("open"); // открывает/закрывает список
-//   });
-
-//   const items = filter.querySelectorAll(".filter__item");
-
-//   items.forEach((item) => {
-//     item.addEventListener("click", () => {
-//       selected.textContent = item.textContent; // меняем выбранный текст
-//       filter.classList.remove("open"); // закрываем список
-//     });
-//   });
 // }
 
 // function filterListDoneFunc() {

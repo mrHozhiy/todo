@@ -62,7 +62,30 @@ h1 {
   width: 100%;
   height: 38px;
   outline: none;
+
+  font-family: var(--second-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 100%;
+  color: var(--purple);
 }
+
+/* убирает крестик слева в инпуте search__input */
+/* Для Chrome, Safari, Edge (на базе Chromium) */
+input::-webkit-search-decoration,
+input::-webkit-search-cancel-button,
+input::-webkit-search-results-button,
+input::-webkit-search-results-decoration {
+  display: none;
+}
+
+/* Для Edge и IE */
+input[type="search"]::-ms-clear {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
 .search__input::placeholder {
   font-family: var(--second-family);
   font-weight: 500;
@@ -71,7 +94,7 @@ h1 {
   color: #c3c1e5;
 }
 .search__input:focus {
-  box-shadow: 0 2px 8px var(--purple);
+  box-shadow: 0 0px 3px var(--purple);
 }
 
 .search__btn {
@@ -98,16 +121,16 @@ h1 {
 
 /* filter search */
 
-.filter__selected {
-}
-
 .filter {
   position: relative;
   border-radius: 5px;
   padding: 10px;
-  padding-right: 43px;
+  padding-right: 52px;
   height: 38px;
-  /* box-shadow: 0 0 4px 0 var(--purple); */
+  min-width: 95px;
+
+  border: 2px solid var(--purple);
+  box-shadow: 0 0 4px 0 var(--purple);
   background: var(--purple);
   user-select: none;
 
@@ -132,17 +155,18 @@ h1 {
 
 .filter__list {
   position: absolute;
-  top: 90%;
-  left: -10px;
-  width: 100%;
-  margin: 0 10px;
-  text-align: center;
   border: 1px solid #6c63ff;
-  border-top: none;
-  border-radius: 0 0 5px 5px;
-  background: #03abff;
-  display: none; /* скрыт по умолчанию */
+  border-radius: 5px;
+  width: 100%;
+  background: var(--white);
+  top: 38px;
+  left: 0;
+  display: none; /*скрыт по умолчанию*/
   z-index: 1;
+}
+.filter.open {
+  border: 2px solid var(--purple);
+  background: #534cc2;
 }
 
 .filter.open .filter__list {
@@ -150,12 +174,20 @@ h1 {
 }
 
 .filter__item {
-  padding: 10px;
-  cursor: pointer;
+  /* padding: 10px; */
+
+  padding: 8px 6px;
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 100%;
+  text-transform: capitalize;
+  color: var(--purple);
+  cursor: var(--cursor-hand);
 }
 
 .filter__item:hover {
-  background: #f0f0f0;
+  background: rgba(108, 99, 255, 0.2);
 }
 
 /* switch_theme */
