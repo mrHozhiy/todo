@@ -63,6 +63,13 @@ h1 {
   height: 38px;
   outline: none;
 }
+.search__input::placeholder {
+  font-family: var(--second-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 100%;
+  color: #c3c1e5;
+}
 .search__input:focus {
   box-shadow: 0 2px 8px var(--purple);
 }
