@@ -20,6 +20,8 @@ const searchInput = document.querySelector(".search__input");
 const filterListCategoryArr = ["All", "Completed", "Incomplete"];
 const tasksArr = ["task 1", "task 2", "task 3", "task 4"];
 
+// functions
+
 function filterListFunc() {
   filter.addEventListener("click", () => {
     filter.classList.toggle("open"); // открывает/закрывает список
@@ -37,6 +39,7 @@ function filterListFunc() {
   });
 }
 
+// function init
 filterListFunc();
 
 // function addTask() {

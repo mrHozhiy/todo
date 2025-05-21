@@ -32,6 +32,10 @@ body {
   padding-top: 40px;
 }
 
+main {
+  position: relative;
+}
+
 h1 {
   text-transform: uppercase;
   text-align: center;
@@ -206,4 +210,131 @@ input[type="search"]::-ms-clear {
 .switch_theme:hover {
   background: #5850dd;
   box-shadow: 0 0 4px 0 var(--purple);
+}
+
+.add__btn {
+  /* position: absolute;
+  right: 0;
+  bottom: 0; */
+  display: flex;
+  text-align: right;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  box-shadow: 0 0 4px 0 var(--purple);
+  cursor: var(--cursor-hand);
+  border: 2px solid var(--purple);
+  background: var(--purple);
+  transition: all 0.3s ease;
+}
+.add__btn:hover {
+  background: #534cc2;
+}
+
+.add__btn img {
+  display: block;
+}
+
+.main {
+  width: 520px;
+  margin: 0 auto;
+  margin-top: 30px;
+}
+
+.notes__item {
+  display: flex;
+  cursor: var(--cursor-hand);
+  padding: 17px 0;
+  position: relative;
+}
+
+.notes__item:after {
+  content: "";
+  display: block;
+  background: var(--purple);
+  width: 100%;
+  opacity: 0.5;
+  height: 1px;
+  position: absolute;
+  bottom: 0;
+}
+
+.notes__item:last-child:after {
+  content: "";
+  display: none;
+  background: var(--purple);
+  width: 100%;
+  opacity: 0.5;
+  height: 1px;
+  position: absolute;
+  bottom: 0;
+}
+
+.notes__item:hover .options {
+  display: flex;
+}
+.notes__item-check {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--purple);
+  border-radius: 2px;
+  width: 26px;
+  height: 26px;
+  margin-right: 17px;
+}
+
+.notes__item-check img {
+  display: none;
+  /* width: 100%; */
+}
+
+.notes__item-check.checked {
+  background: var(--purple);
+}
+
+.notes__item-check.checked img {
+  display: block;
+}
+.options {
+  display: none;
+  /* display: flex; */
+  margin-left: auto;
+  justify-content: center;
+  align-items: center;
+  justify-self: end;
+  gap: 10px;
+}
+
+.notes__item span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 15px;
+  height: 15px;
+}
+
+.notes__item .options__pencil {
+  background: url("/img/icons/pencil.png") center center / cover no-repeat;
+  transition: background 0.3s ease;
+  cursor: var(--cursor-hand);
+}
+
+.notes__item .options__pencil:hover {
+  background: url("/img/icons/pencil-hover.png") center center / cover no-repeat;
+}
+
+.notes__item .options__trash {
+  display: block;
+  width: 15px;
+  height: 15px;
+  background: url("/img/icons/trash.png") center center / cover no-repeat;
+  transition: background 0.3s ease;
+  cursor: var(--cursor-hand);
+}
+
+.notes__item .options__trash:hover {
+  background: url("/img/icons/trash-hover.png") center center / cover no-repeat;
 }
