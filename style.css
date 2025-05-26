@@ -338,3 +338,9 @@ input[type="search"]::-ms-clear {
 .notes__item .options__trash:hover {
   background: url("/img/icons/trash-hover.png") center center / cover no-repeat;
 }
+
+.footer {
+  display: flex;
+  justify-content: end;
+  padding: 20px 0;
+}
