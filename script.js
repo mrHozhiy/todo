@@ -2,25 +2,72 @@
 const filter = document.querySelector(".filter");
 const filterSelected = document.querySelector(".filter__selected");
 const filterList = document.querySelector(".filter__list");
-// Tasks
 
+// Notes
 const notes = document.querySelector(".notes");
 const notesItem = document.querySelectorAll(".notes__item");
 
-// add task
-
-const addInput = document.querySelector(".add__input");
+//modal Add note Cancel modal
 const addBtn = document.querySelector(".add__btn");
+const modalWrap = document.querySelector(".modal__wrap");
+const cancelBtn = document.querySelector(".modal__btn-cancel");
+const applyBtn = document.querySelector(".modal__btn-apply");
+const modalInput = document.querySelector(".modal__input");
 
 // search
-
 const searchInput = document.querySelector(".search__input");
 
 // arrays
 const filterListCategoryArr = ["All", "Completed", "Incomplete"];
-const tasksArr = ["task 1", "task 2", "task 3", "task 4"];
+const notesArr = ["note 1", "note 2", "note 3", "note 4"];
+
+const notesObj = [
+  {
+    note: "note 1",
+    isChecked: true,
+  },
+  {
+    note: "note 2",
+    isChecked: false,
+  },
+  {
+    note: "note 3",
+    isChecked: true,
+  },
+  {
+    note: "note 4",
+    isChecked: false,
+  },
+  {
+    note: "new note",
+    isChecked: true,
+  },
+];
 
 // functions
+
+function renderNotes() {
+  notes.innerHTML = "";
+  notesObj.forEach((item) => {
+    const notesItemCheck = document.createElement("li");
+    notesItemCheck.classList.add("notes__item");
+
+    notesItemCheck.innerHTML = `
+        <div class="notes__item-check">
+          <img src="/img/icons/checked.png" alt="checked" />
+        </div>
+        <div class="notes__descr">${item.note}</div>
+        <div class="options">
+          <span class="options__pencil"></span>
+          <span class="options__trash"></span>
+        </div>`;
+
+    if (item.isChecked) {
+      notesItemCheck.classList.add("checked");
+    }
+    notes.appendChild(notesItemCheck);
+  });
+}
 
 function filterListFunc() {
   filter.addEventListener("click", () => {
@@ -32,140 +79,48 @@ function filterListFunc() {
   items.forEach((item) => {
     item.addEventListener("click", (e) => {
       filterSelected.textContent = item.textContent; // меняем выбранный текст
-      //   filter.classList.toggle("open"); // открывает/закрывает список
-      //   console.log(e.target);
-      //   filter.classList.remove("open"); // закрываем список
     });
   });
 }
 
+function openModalAddNote() {
+  addBtn.addEventListener("click", () => {
+    modalWrap.classList.add("modal__open");
+  });
+}
+
+function cancelModalAddNote() {
+  cancelBtn.addEventListener("click", () => {
+    if (modalWrap.classList.contains("modal__open"))
+      modalWrap.classList.remove("modal__open");
+    modalInput.classList.remove("modal__input-error");
+  });
+}
+
+function addNote() {
+  applyBtn.addEventListener("click", () => {
+    let value = modalInput.value;
+    if (value === "") {
+      modalInput.classList.add("modal__input-error");
+      return;
+    }
+    const newNote = { note: value, isChecked: false };
+    notesObj.push(newNote);
+    modalWrap.classList.remove("modal__open");
+    modalInput.classList.remove("modal__input-error");
+    modalInput.value = "";
+
+    console.log(notesObj);
+
+    renderNotes();
+  });
+}
+
 // function init
+renderNotes();
+
 filterListFunc();
+openModalAddNote();
+cancelModalAddNote();
 
-// function addTask() {
-//   // console.log(tasksArr);
-
-//   addBtn.addEventListener("click", () => {
-//     // test = addInput.value;
-//     // console.log(addInput.value);
-//     tasksArr.push(addInput.value);
-//     console.log(tasksArr);
-//     tasks.innerHTML = "";
-//     // createElement(ul);
-//     renderFilterList(tasks, "li", tasksArr, "tasks__item");
-//     renderTaskItem(tasksArr);
-//     addInput.value = "";
-//   });
-// }
-
-// function renderFilterList(parent, tag, arrList, className) {
-//   for (let i = 0; i < arrList.length; i++) {
-//     const item = document.createElement(tag);
-//     item.classList.add(className);
-//     // console.log(filterListArr[i]);
-//     item.textContent = arrList[i];
-//     parent.appendChild(item); // вставили в конец
-//     // console.log(item.textContent);
-//   }
-// }
-
-// function filterListDoneFunc() {
-//   const filterDoneItem = document.querySelectorAll(".filter-done-item");
-//   filterDoneItem[0].classList.add("filter-done-item__active");
-//   // console.log(filterDoneItem);
-
-//   filterDoneWrap.addEventListener("click", (e) => {
-//     // console.log(e.target);
-//     filterDoneItem.forEach((item) => {
-//       item.classList.remove("filter-done-item__active");
-//     });
-//     e.target.classList.add("filter-done-item__active");
-//     // filter.classList.toggle("open"); // открывает/закрывает список
-//   });
-// }
-
-// function renderTaskItem(arrList) {
-//   const taskItem = document.querySelectorAll(".tasks__item");
-
-//   for (let i = 0; i < arrList.length; i++) {
-//     taskItem[i].innerHTML = `
-//     <div class="tasks__descr">${arrList[i]}</div>
-//     <div class="btns__wrap">
-//       <button>
-//         <i class="fi fi-rr-pencil tasks__btn-edit"></i>
-//       </button>
-//       <button>
-//         <i class="fi fi-rr-heart tasks__btn-favorite"></i>
-//       </button>
-//       <button>
-//         <i class="fi fi-rr-trash tasks__btn-trash"></i>
-//       </button>
-//     </div>`;
-//   }
-// }
-
-// function checkEmptyTasks(arr) {
-//   if (arr.length === 0) {
-//     tasks.innerHTML = `
-//     <div class="tasks__empty">
-//       <img src="/img/Detective-check-footprint.png" alt="empty" />
-//       <h3>Empty...</h3>
-//     </div>`;
-//   }
-// }
-
-// function removeTask() {
-//   tasks.addEventListener("click", (e) => {
-//     const target = e.target;
-
-//     // console.log(target.classList.contains("tasks__btn-trash"));
-
-//     if (target.classList.contains("tasks__btn-trash")) {
-//       const taskItem = target.closest(".tasks__item");
-//       const taskText = taskItem.querySelector(".tasks__descr").textContent;
-//       // Удаляем задачу из массива по значению
-//       const index = tasksArr.indexOf(taskText);
-//       if (index !== -1) {
-//         tasksArr.splice(index, 1); // удаляем из массива
-//       }
-//       tasks.innerHTML = "";
-//       renderFilterList(tasks, "li", tasksArr, "tasks__item");
-//       renderTaskItem(tasksArr);
-//       checkEmptyTasks(tasksArr);
-//     }
-//   });
-// }
-
-// function searchTask() {
-//   searchInput.addEventListener("input", () => {
-//     console.log(searchInput);
-//     let inputValue = searchInput.value.toLowerCase().trim();
-//     console.log(inputValue);
-
-//     const filteredTasks = tasksArr.filter((task) =>
-//       // task.toLowerCase().includes(inputValue) поиск по словам
-//       task.toLowerCase().startsWith(inputValue)
-//     );
-
-//     tasks.innerHTML = "";
-//     renderFilterList(tasks, "li", filteredTasks, "tasks__item");
-//     renderTaskItem(filteredTasks);
-//     checkEmptyTasks(filteredTasks);
-//   });
-//   // console.log(searchInput);
-// }
-
-// renderFilterList(filterList, "li", filterListArr, "filter__item");
-// renderFilterList(tasks, "li", tasksArr, "tasks__item");
-// renderTaskItem(tasksArr);
-// renderFilterList(
-//   filterDoneWrap,
-//   "li",
-//   filterListCategoryArr,
-//   "filter-done-item"
-// );
-// filterListFunc();
-// filterListDoneFunc();
-// addTask();
-// searchTask();
-// removeTask();
+addNote();

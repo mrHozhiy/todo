@@ -24,7 +24,7 @@
   <body>
     <div class="container">
       <header class="header">
-        <h1>TODO List</h1>
+        <h1 class="header__title title">TODO List</h1>
 
         <div class="header__wrap">
           <form class="search">
@@ -55,51 +55,7 @@
         </div>
       </header>
       <main class="main">
-        <ul class="notes">
-          <li class="notes__item">
-            <div class="notes__item-check checked">
-              <img src="/img/icons/checked.png" alt="checked" />
-            </div>
-            <div class="notes__descr">note 1</div>
-            <div class="options">
-              <span class="options__pencil"></span>
-              <span class="options__trash"></span>
-            </div>
-          </li>
-        <ul class="notes">
-          <li class="notes__item">
-            <div class="notes__item-check">
-              <img src="/img/icons/checked.png" alt="checked" />
-            </div>
-            <div class="notes__descr">note 2</div>
-            <div class="options">
-              <span class="options__pencil"></span>
-              <span class="options__trash"></span>
-            </div>
-          </li>
-        <ul class="notes">
-          <li class="notes__item">
-            <div class="notes__item-check checked">
-              <img src="/img/icons/checked.png" alt="checked" />
-            </div>
-            <div class="notes__descr">note 3</div>
-            <div class="options">
-              <span class="options__pencil"></span>
-              <span class="options__trash"></span>
-            </div>
-          </li>
-        <ul class="notes">
-          <li class="notes__item">
-            <div class="notes__item-check">
-              <img src="/img/icons/checked.png" alt="checked" />
-            </div>
-            <div class="notes__descr">note 4</div>
-            <div class="options">
-              <span class="options__pencil"></span>
-              <span class="options__trash"></span>
-            </div>
-          </li>
-        </ul>
+        <ul class="notes"></ul>
       </main>
       <footer class="footer">
         <button class="add__btn">
@@ -108,6 +64,20 @@
       </footer>
     </div>
 
+    <div class="modal__wrap">
+      <div class="modal">
+        <h2 class="modal__title title">New Note</h2>
+        <input
+          class="modal__input"
+          type="text"
+          placeholder="Input your note..."
+        />
+        <div class="modal__btns">
+          <button class="modal__btn-cancel">cancel</button>
+          <button class="modal__btn-apply">apply</button>
+        </div>
+      </div>
+    </div>
     <script src="script.js"></script>
   </body>
 </html>
