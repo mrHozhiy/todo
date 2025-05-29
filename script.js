@@ -46,12 +46,23 @@ let notesObj = [
 // functions
 
 function renderNotes(arrayObjs) {
+  if (arrayObjs.length === 0) {
+    notes.innerHTML = "";
+    let notesItem = document.createElement("li");
+    notesItem.classList.add("notes__empty");
+    notesItem.innerHTML = `
+          <img src="/img/Detective-check-footprint.png" alt="empty" />
+          <h3 title title__empty>Empty...</h2>`;
+    console.log("empty");
+    notes.appendChild(notesItem);
+    return;
+  }
   notes.innerHTML = "";
   arrayObjs.forEach((item) => {
-    const notesItemCheck = document.createElement("li");
-    notesItemCheck.classList.add("notes__item");
+    const notesItem = document.createElement("li");
+    notesItem.classList.add("notes__item");
 
-    notesItemCheck.innerHTML = `
+    notesItem.innerHTML = `
         <div class="notes__item-check">
           <img src="/img/icons/checked.png" alt="checked" />
         </div>
@@ -62,15 +73,18 @@ function renderNotes(arrayObjs) {
         </div>`;
 
     if (item.isChecked) {
-      notesItemCheck.classList.add("checked");
+      notesItem.classList.add("checked");
     }
-    notes.appendChild(notesItemCheck);
+    notes.appendChild(notesItem);
   });
 }
 
 function filterListFunc() {
-  filter.addEventListener("click", () => {
-    filter.classList.toggle("open"); // открывает/закрывает список
+  filter.addEventListener("click", (e) => {
+    console.log(e.target);
+    filter.classList.toggle("open");
+    // if (e.target !== filter) filter.classList.remove("open");
+    // открывает/закрывает список
   });
 
   const items = filter.querySelectorAll(".filter__item");
@@ -78,6 +92,7 @@ function filterListFunc() {
   items.forEach((item) => {
     item.addEventListener("click", (e) => {
       filterSelected.textContent = item.textContent; // меняем выбранный текст
+      // filter.classList.remove("open");
     });
   });
 }
