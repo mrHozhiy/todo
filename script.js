@@ -98,8 +98,6 @@ function filterListFunc() {
   });
 }
 
-// const initListeners = () =
-
 function openModalAddNote() {
   addBtn.addEventListener("click", () => {
     modalWrap.classList.add("modal__open");
