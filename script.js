@@ -59,6 +59,7 @@ function renderNotes(arrayObjs) {
   }
   notes.innerHTML = "";
   arrayObjs.forEach((item) => {
+    // const item = arrayObjs[arrayObjs.length - 1];
     const notesItem = document.createElement("li");
     notesItem.classList.add("notes__item");
 
@@ -96,6 +97,8 @@ function filterListFunc() {
     });
   });
 }
+
+// const initListeners = () =
 
 function openModalAddNote() {
   addBtn.addEventListener("click", () => {
