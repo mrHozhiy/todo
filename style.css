@@ -33,7 +33,7 @@ body {
 }
 
 .container {
-  max-width: 750px;
+  width: 750px;
   margin: 0 auto;
 
   flex: 1 0 auto;
@@ -280,14 +280,7 @@ input[type="search"]::-ms-clear {
 }
 
 .notes__item:last-child:after {
-  content: "";
   display: none;
-  background: var(--purple);
-  width: 100%;
-  opacity: 0.5;
-  height: 1px;
-  position: absolute;
-  bottom: 0;
 }
 
 .notes__item:hover .options {
@@ -316,6 +309,31 @@ input[type="search"]::-ms-clear {
 .notes__item.checked .notes__item-check img {
   display: block;
 }
+
+.notes__empty {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.notes__empty img {
+  display: block;
+  width: 221px;
+  height: 174px;
+  margin: 0 auto;
+}
+
+.notes__empty h3 {
+  margin-top: 20px;
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 100%;
+  text-transform: capitalize;
+  color: var(--black);
+  text-align: center;
+}
+
 .options {
   display: none;
   /* display: flex; */
