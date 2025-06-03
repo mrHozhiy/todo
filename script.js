@@ -19,9 +19,8 @@ const searchInput = document.querySelector(".search__input");
 
 // arrays
 const filterListCategoryArr = ["All", "Completed", "Incomplete"];
-const notesArr = ["note 1", "note 2", "note 3", "note 4"];
 
-const notesObj = [
+let notesObj = [
   {
     note: "note 1",
     isChecked: true,
@@ -46,9 +45,9 @@ const notesObj = [
 
 // functions
 
-function renderNotes() {
+function renderNotes(arrayObjs) {
   notes.innerHTML = "";
-  notesObj.forEach((item) => {
+  arrayObjs.forEach((item) => {
     const notesItemCheck = document.createElement("li");
     notesItemCheck.classList.add("notes__item");
 
@@ -112,15 +111,33 @@ function addNote() {
 
     console.log(notesObj);
 
-    renderNotes();
+    renderNotes(notesObj);
+  });
+}
+
+function removeNote() {
+  notes.addEventListener("click", (e) => {
+    let target = e.target;
+    // console.log(target);
+    if (target.classList.contains("options__trash")) {
+      let str = target.closest(".notes__item");
+      str = str.querySelector(".notes__descr").textContent;
+      console.log(str);
+      let updatedObj = notesObj.filter((note) => note.note !== str);
+      notesObj = updatedObj;
+    }
+
+    renderNotes(notesObj);
   });
 }
 
 // function init
-renderNotes();
+renderNotes(notesObj);
 
 filterListFunc();
+
 openModalAddNote();
 cancelModalAddNote();
 
 addNote();
+removeNote();
