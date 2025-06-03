@@ -3,46 +3,109 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
+      href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500&display=swap"
       rel="stylesheet"
-      href="https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css"
     />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+
     <link rel="stylesheet" href="style.css" />
     <title>To Do</title>
   </head>
   <body>
     <div class="container">
-      <h1>TODO List</h1>
-      <div class="search__wrap">
-        <div class="search">
-          <input
-            type="search"
-            name="search"
-            id="search"
-            class="search__input"
-            placeholder="Input task"
-          />
-          <button class="search__btn"><i class="fi fi-rr-search"></i></button>
-        </div>
-        <div class="filter">
-          <div class="filter__selected">filter</div>
-          <ul class="filter__list"></ul>
-        </div>
-      </div>
+      <header class="header">
+        <h1>TODO List</h1>
 
-      <ul class="filter-done__wrap"></ul>
-
-      <ul class="tasks"></ul>
-      <div class="add">
-        <input
-          type="text"
-          name="add"
-          id="add"
-          class="add__input"
-          placeholder="Add task"
-        />
-        <button class="add__btn"><i class="fi fi-rr-add"></i></button>
-      </div>
+        <div class="header__wrap">
+          <form class="search">
+            <input
+              type="search"
+              name="search"
+              id="search"
+              class="search__input"
+              placeholder="Search note..."
+            />
+            <button class="search__btn">
+              <img src="/img/icons/search_icon.svg" alt="search_icon" />
+            </button>
+          </form>
+          <div class="header__groups">
+            <div class="filter">
+              <div class="filter__selected">all</div>
+              <ul class="filter__list">
+                <li class="filter__item">All</li>
+                <li class="filter__item">Completed</li>
+                <li class="filter__item">Incomplete</li>
+              </ul>
+            </div>
+            <div class="switch_theme">
+              <img src="/img/icons/dark_theme.svg" alt="switch_theme" />
+            </div>
+          </div>
+        </div>
+      </header>
+      <main class="main">
+        <ul class="notes">
+          <li class="notes__item">
+            <div class="notes__item-check checked">
+              <img src="/img/icons/checked.png" alt="checked" />
+            </div>
+            <div class="notes__descr">note 1</div>
+            <div class="options">
+              <span class="options__pencil"></span>
+              <span class="options__trash"></span>
+            </div>
+          </li>
+        <ul class="notes">
+          <li class="notes__item">
+            <div class="notes__item-check">
+              <img src="/img/icons/checked.png" alt="checked" />
+            </div>
+            <div class="notes__descr">note 2</div>
+            <div class="options">
+              <span class="options__pencil"></span>
+              <span class="options__trash"></span>
+            </div>
+          </li>
+        <ul class="notes">
+          <li class="notes__item">
+            <div class="notes__item-check checked">
+              <img src="/img/icons/checked.png" alt="checked" />
+            </div>
+            <div class="notes__descr">note 3</div>
+            <div class="options">
+              <span class="options__pencil"></span>
+              <span class="options__trash"></span>
+            </div>
+          </li>
+        <ul class="notes">
+          <li class="notes__item">
+            <div class="notes__item-check">
+              <img src="/img/icons/checked.png" alt="checked" />
+            </div>
+            <div class="notes__descr">note 4</div>
+            <div class="options">
+              <span class="options__pencil"></span>
+              <span class="options__trash"></span>
+            </div>
+          </li>
+        </ul>
+      </main>
+      <footer class="footer">
+        <button class="add__btn">
+          <img src="/img/icons/add-plus-button.png" alt="add-plus-button" />
+        </button>
+      </footer>
     </div>
 
     <script src="script.js"></script>
