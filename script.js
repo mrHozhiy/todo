@@ -135,9 +135,30 @@ function initListeners() {
     if (target.classList.contains("options__trash")) {
       let str = target.closest(".notes__item");
       str = str.querySelector(".notes__descr").textContent;
-      console.log(str);
+      // console.log(str);
       let updatedObj = notesObj.filter((note) => note.note !== str);
       notesObj = updatedObj;
+    }
+
+    renderNotes(notesObj);
+  });
+
+  // check note
+  notes.addEventListener("click", (e) => {
+    let target = e.target;
+    if (
+      target.classList.contains("notes__item-check") ||
+      target.tagName === "IMG"
+    ) {
+      let str = target.closest(".notes__item");
+      str = str.querySelector(".notes__descr").textContent;
+      // console.log(str);
+
+      notesObj.forEach((note) => {
+        if (note.note === str) {
+          note.isChecked = !note.isChecked; // toggle checked state
+        }
+      });
     }
 
     renderNotes(notesObj);
