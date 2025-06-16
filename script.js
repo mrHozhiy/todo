@@ -80,7 +80,8 @@ function renderNotes(arrayObjs) {
   });
 }
 
-function filterListFunc() {
+function initListeners() {
+  // Filter list
   filter.addEventListener("click", (e) => {
     console.log(e.target);
     filter.classList.toggle("open");
@@ -96,23 +97,20 @@ function filterListFunc() {
       // filter.classList.remove("open");
     });
   });
-}
 
-function openModalAddNote() {
+  // open Modal add note
   addBtn.addEventListener("click", () => {
     modalWrap.classList.add("modal__open");
   });
-}
 
-function cancelModalAddNote() {
+  // cancel Modal Add Note
   cancelBtn.addEventListener("click", () => {
     if (modalWrap.classList.contains("modal__open"))
       modalWrap.classList.remove("modal__open");
     modalInput.classList.remove("modal__input-error");
   });
-}
 
-function addNote() {
+  // add note
   applyBtn.addEventListener("click", () => {
     let value = modalInput.value;
     if (value === "") {
@@ -129,9 +127,24 @@ function addNote() {
 
     renderNotes(notesObj);
   });
-}
 
-function searchNotes() {
+  // remove note
+  notes.addEventListener("click", (e) => {
+    let target = e.target;
+    // console.log(target);
+    if (target.classList.contains("options__trash")) {
+      let str = target.closest(".notes__item");
+      str = str.querySelector(".notes__descr").textContent;
+      console.log(str);
+      let updatedObj = notesObj.filter((note) => note.note !== str);
+      notesObj = updatedObj;
+    }
+
+    renderNotes(notesObj);
+  });
+
+  // search note
+
   searchInput.addEventListener("input", (e) => {
     let value = e.target.value.toLowerCase();
     console.log(value);
@@ -147,31 +160,7 @@ function searchNotes() {
   });
 }
 
-function removeNote() {
-  notes.addEventListener("click", (e) => {
-    let target = e.target;
-    // console.log(target);
-    if (target.classList.contains("options__trash")) {
-      let str = target.closest(".notes__item");
-      str = str.querySelector(".notes__descr").textContent;
-      console.log(str);
-      let updatedObj = notesObj.filter((note) => note.note !== str);
-      notesObj = updatedObj;
-    }
-
-    renderNotes(notesObj);
-  });
-}
-
 // function init
 renderNotes(notesObj);
 
-filterListFunc();
-
-openModalAddNote();
-cancelModalAddNote();
-
-addNote();
-removeNote();
-
-searchNotes();
+initListeners();
