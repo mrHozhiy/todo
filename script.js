@@ -131,6 +131,22 @@ function addNote() {
   });
 }
 
+function searchNotes() {
+  searchInput.addEventListener("input", (e) => {
+    let value = e.target.value.toLowerCase();
+    console.log(value);
+    if (value === "") {
+      renderNotes(notesObj);
+      return;
+    }
+    let filteredNotes = notesObj.filter((note) =>
+      note.note.toLowerCase().includes(value)
+    );
+    console.log(filteredNotes);
+    renderNotes(filteredNotes);
+  });
+}
+
 function removeNote() {
   notes.addEventListener("click", (e) => {
     let target = e.target;
@@ -157,3 +173,5 @@ cancelModalAddNote();
 
 addNote();
 removeNote();
+
+searchNotes();
