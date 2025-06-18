@@ -140,12 +140,7 @@ function initListeners() {
       notesObj = updatedObj;
     }
 
-    renderNotes(notesObj);
-  });
-
-  // check note
-  notes.addEventListener("click", (e) => {
-    let target = e.target;
+    // check note
     if (
       target.classList.contains("notes__item-check") ||
       target.tagName === "IMG"
