@@ -141,10 +141,7 @@ function initListeners() {
     }
 
     // check note
-    if (
-      target.classList.contains("notes__item-check") ||
-      target.tagName === "IMG"
-    ) {
+    if (target.closest(".notes__item-check")) {
       let str = target.closest(".notes__item");
       str = str.querySelector(".notes__descr").textContent;
       // console.log(str);
