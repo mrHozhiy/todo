@@ -21,26 +21,11 @@ const searchInput = document.querySelector(".search__input");
 const filterListCategoryArr = ["All", "Completed", "Incomplete"];
 
 let notesObj = [
-  {
-    note: "note 1",
-    isChecked: true,
-  },
-  {
-    note: "note 2",
-    isChecked: false,
-  },
-  {
-    note: "note 3",
-    isChecked: true,
-  },
-  {
-    note: "note 4",
-    isChecked: false,
-  },
-  {
-    note: "new note",
-    isChecked: true,
-  },
+  { id: 1, note: "note 1", isChecked: true },
+  { id: 2, note: "note 2", isChecked: false },
+  { id: 3, note: "note 3", isChecked: true },
+  { id: 4, note: "note 4", isChecked: false },
+  { id: 5, note: "new note", isChecked: true },
 ];
 
 // functions
@@ -117,7 +102,7 @@ function initListeners() {
       modalInput.classList.add("modal__input-error");
       return;
     }
-    const newNote = { note: value, isChecked: false };
+    const newNote = { id: notesObj.length + 1, note: value, isChecked: false };
     notesObj.push(newNote);
     modalWrap.classList.remove("modal__open");
     modalInput.classList.remove("modal__input-error");
