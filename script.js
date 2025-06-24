@@ -131,23 +131,18 @@ function initListeners() {
   // remove note
   notes.addEventListener("click", (e) => {
     let target = e.target;
-    // console.log(target);
+    const noteElement = target.closest(".notes__item");
+    const noteText = noteElement.querySelector(".notes__descr").textContent;
+
     if (target.classList.contains("options__trash")) {
-      let str = target.closest(".notes__item");
-      str = str.querySelector(".notes__descr").textContent;
-      // console.log(str);
-      let updatedObj = notesObj.filter((note) => note.note !== str);
+      let updatedObj = notesObj.filter((note) => note.note !== noteText);
       notesObj = updatedObj;
     }
 
     // check note
     if (target.closest(".notes__item-check")) {
-      let str = target.closest(".notes__item");
-      str = str.querySelector(".notes__descr").textContent;
-      // console.log(str);
-
       notesObj.forEach((note) => {
-        if (note.note === str) {
+        if (note.note === noteText) {
           note.isChecked = !note.isChecked; // toggle checked state
         }
       });
