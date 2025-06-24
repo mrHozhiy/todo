@@ -141,11 +141,9 @@ function initListeners() {
 
     // check note
     if (target.closest(".notes__item-check")) {
-      notesObj.forEach((note) => {
-        if (note.note === noteText) {
-          note.isChecked = !note.isChecked; // toggle checked state
-        }
-      });
+      notesObj = notesObj.map((note) =>
+        note.note === noteText ? { ...note, isChecked: !note.isChecked } : note
+      );
     }
 
     renderNotes(notesObj);
