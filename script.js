@@ -20,12 +20,15 @@ const searchInput = document.querySelector(".search__input");
 // arrays
 const filterListCategoryArr = ["All", "Completed", "Incomplete"];
 
+const generateId = () =>
+  Date.now().toString() + Math.random().toString(36).substring(2);
+
 let notesObj = [
-  { id: 1, note: "note 1", isChecked: true },
-  { id: 2, note: "note 2", isChecked: false },
-  { id: 3, note: "note 3", isChecked: true },
-  { id: 4, note: "note 4", isChecked: false },
-  { id: 5, note: "new note", isChecked: true },
+  { id: generateId(), note: "note 1", isChecked: true },
+  { id: generateId(), note: "note 2", isChecked: false },
+  { id: generateId(), note: "note 3", isChecked: true },
+  { id: generateId(), note: "note 4", isChecked: false },
+  { id: generateId(), note: "new note", isChecked: true },
 ];
 
 // functions
@@ -47,6 +50,7 @@ function renderNotes(arrayObjs) {
     // const item = arrayObjs[arrayObjs.length - 1];
     const notesItem = document.createElement("li");
     notesItem.classList.add("notes__item");
+    notesItem.setAttribute("data-id", item.id);
 
     notesItem.innerHTML = `
         <div class="notes__item-check">
@@ -102,7 +106,7 @@ function initListeners() {
       modalInput.classList.add("modal__input-error");
       return;
     }
-    const newNote = { id: notesObj.length + 1, note: value, isChecked: false };
+    const newNote = { id: generateId(), note: value, isChecked: false };
     notesObj.push(newNote);
     modalWrap.classList.remove("modal__open");
     modalInput.classList.remove("modal__input-error");
@@ -117,17 +121,18 @@ function initListeners() {
   notes.addEventListener("click", (e) => {
     let target = e.target;
     const noteElement = target.closest(".notes__item");
-    const noteText = noteElement.querySelector(".notes__descr").textContent;
+    const noteId = noteElement.getAttribute("data-id");
+    // const noteText = noteElement.querySelector(".notes__descr").textContent;
 
     if (target.classList.contains("options__trash")) {
-      let updatedObj = notesObj.filter((note) => note.note !== noteText);
+      let updatedObj = notesObj.filter((note) => note.id !== noteId);
       notesObj = updatedObj;
     }
 
     // check note
     if (target.closest(".notes__item-check")) {
       notesObj = notesObj.map((note) =>
-        note.note === noteText ? { ...note, isChecked: !note.isChecked } : note
+        note.id === noteId ? { ...note, isChecked: !note.isChecked } : note
       );
     }
 
