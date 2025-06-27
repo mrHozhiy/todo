@@ -23,7 +23,16 @@ const filterListCategoryArr = ["All", "Completed", "Incomplete"];
 const generateId = () =>
   Date.now().toString() + Math.random().toString(36).substring(2);
 
-let notesObj = [
+const saveNotesToLocalStorage = () => {
+  localStorage.setItem("notes", JSON.stringify(notesObj));
+};
+
+const loadNotesFromLocalStorage = () => {
+  const notesFromStorage = localStorage.getItem("notes");
+  return notesFromStorage ? JSON.parse(notesFromStorage) : null;
+};
+
+let notesObj = loadNotesFromLocalStorage() || [
   { id: generateId(), note: "note 1", isChecked: true },
   { id: generateId(), note: "note 2", isChecked: false },
   { id: generateId(), note: "note 3", isChecked: true },
@@ -108,6 +117,8 @@ function initListeners() {
     }
     const newNote = { id: generateId(), note: value, isChecked: false };
     notesObj.push(newNote);
+    saveNotesToLocalStorage();
+
     modalWrap.classList.remove("modal__open");
     modalInput.classList.remove("modal__input-error");
     modalInput.value = "";
@@ -126,7 +137,9 @@ function initListeners() {
 
     if (target.classList.contains("options__trash")) {
       let updatedObj = notesObj.filter((note) => note.id !== noteId);
+
       notesObj = updatedObj;
+      saveNotesToLocalStorage();
     }
 
     // check note
@@ -134,6 +147,8 @@ function initListeners() {
       notesObj = notesObj.map((note) =>
         note.id === noteId ? { ...note, isChecked: !note.isChecked } : note
       );
+
+      saveNotesToLocalStorage();
     }
 
     renderNotes(notesObj);
