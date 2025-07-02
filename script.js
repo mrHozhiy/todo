@@ -23,16 +23,16 @@ const filterListCategoryArr = ["All", "Completed", "Incomplete"];
 const generateId = () =>
   Date.now().toString() + Math.random().toString(36).substring(2);
 
-const saveNotesToLocalStorage = () => {
+const saveNotesToLocalStorage = (notesObj) => {
   localStorage.setItem("notes", JSON.stringify(notesObj));
 };
 
-const loadNotesFromLocalStorage = () => {
-  const notesFromStorage = localStorage.getItem("notes");
+const loadNotesFromLocalStorage = (key) => {
+  const notesFromStorage = localStorage.getItem(key);
   return notesFromStorage ? JSON.parse(notesFromStorage) : null;
 };
 
-let notesObj = loadNotesFromLocalStorage() || [
+let notesObj = loadNotesFromLocalStorage("notes") || [
   { id: generateId(), note: "note 1", isChecked: true },
   { id: generateId(), note: "note 2", isChecked: false },
   { id: generateId(), note: "note 3", isChecked: true },
@@ -49,7 +49,7 @@ function renderNotes(arrayObjs) {
     notesItem.classList.add("notes__empty");
     notesItem.innerHTML = `
           <img src="/img/Detective-check-footprint.png" alt="empty" />
-          <h3 title title__empty>Empty...</h2>`;
+          <h3 title title__empty>Empty...</h3>`;
     console.log("empty");
     notes.appendChild(notesItem);
     return;
@@ -117,7 +117,7 @@ function initListeners() {
     }
     const newNote = { id: generateId(), note: value, isChecked: false };
     notesObj.push(newNote);
-    saveNotesToLocalStorage();
+    saveNotesToLocalStorage(notesObj);
 
     modalWrap.classList.remove("modal__open");
     modalInput.classList.remove("modal__input-error");
@@ -139,7 +139,7 @@ function initListeners() {
       let updatedObj = notesObj.filter((note) => note.id !== noteId);
 
       notesObj = updatedObj;
-      saveNotesToLocalStorage();
+      saveNotesToLocalStorage(notesObj);
     }
 
     // check note
@@ -148,7 +148,7 @@ function initListeners() {
         note.id === noteId ? { ...note, isChecked: !note.isChecked } : note
       );
 
-      saveNotesToLocalStorage();
+      saveNotesToLocalStorage(notesObj);
     }
 
     renderNotes(notesObj);
