@@ -45,10 +45,15 @@ let notesObj = loadNotesFromLocalStorage("notes") || [
 function renderNotes(arrayObjs) {
   if (arrayObjs.length === 0) {
     notes.innerHTML = "";
+
+    let imgUrl = document.body.classList.contains("dark_theme")
+      ? "/img/Detective-check-footprint-dark.png"
+      : "/img/Detective-check-footprint.png";
+
     let notesItem = document.createElement("li");
     notesItem.classList.add("notes__empty");
     notesItem.innerHTML = `
-          <img src="/img/Detective-check-footprint.png" alt="empty" />
+          <img src="${imgUrl}" alt="empty" />
           <h3 title title__empty>Empty...</h3>`;
     console.log("empty");
     notes.appendChild(notesItem);
