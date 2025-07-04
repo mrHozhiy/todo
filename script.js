@@ -32,6 +32,12 @@ const loadNotesFromLocalStorage = (key) => {
   return notesFromStorage ? JSON.parse(notesFromStorage) : null;
 };
 
+if (localStorage.getItem("theme") === "dark") {
+  document.body.classList.add("dark_theme");
+} else {
+  document.body.classList.remove("dark_theme");
+}
+
 let notesObj = loadNotesFromLocalStorage("notes") || [
   { id: generateId(), note: "note 1", isChecked: true },
   { id: generateId(), note: "note 2", isChecked: false },
@@ -45,10 +51,15 @@ let notesObj = loadNotesFromLocalStorage("notes") || [
 function renderNotes(arrayObjs) {
   if (arrayObjs.length === 0) {
     notes.innerHTML = "";
+
+    let imgUrl = document.body.classList.contains("dark_theme")
+      ? "/img/Detective-check-footprint-dark.png"
+      : "/img/Detective-check-footprint.png";
+
     let notesItem = document.createElement("li");
     notesItem.classList.add("notes__empty");
     notesItem.innerHTML = `
-          <img src="/img/Detective-check-footprint.png" alt="empty" />
+          <img src="${imgUrl}" alt="empty" />
           <h3 title title__empty>Empty...</h3>`;
     console.log("empty");
     notes.appendChild(notesItem);
@@ -168,6 +179,18 @@ function initListeners() {
     );
     console.log(filteredNotes);
     renderNotes(filteredNotes);
+  });
+
+  // change theme
+
+  const btnSwitchTheme = document.querySelector(".btn-switch-theme");
+
+  btnSwitchTheme.addEventListener("click", () => {
+    document.body.classList.toggle("dark_theme");
+    const isDarkTheme = document.body.classList.contains("dark_theme");
+
+    // Save theme preference to localStorage
+    localStorage.setItem("theme", isDarkTheme ? "dark" : "light");
   });
 }
 
