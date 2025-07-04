@@ -304,6 +304,10 @@ body.dark_theme .add__btn {
   position: relative;
 }
 
+body.dark_theme .notes__item {
+  cursor: var(--cursor-hand-white);
+}
+
 .notes__item:after {
   content: "";
   display: block;
