@@ -49,7 +49,19 @@ let notesObj = loadNotesFromLocalStorage("notes") || [
 // functions
 
 function renderNotes(arrayObjs) {
-  if (arrayObjs.length === 0) {
+  // Filter notes based on selected category
+  let filteredNotes = arrayObjs.filter((item) => {
+    const filterText = filterSelected.textContent;
+    if (filterText === "Completed") {
+      return item.isChecked === true;
+    } else if (filterText === "Incomplete") {
+      return item.isChecked === false;
+    } else {
+      return item;
+    }
+  });
+
+  if (filteredNotes.length === 0) {
     notes.innerHTML = "";
 
     let imgUrl = document.body.classList.contains("dark_theme")
@@ -65,8 +77,9 @@ function renderNotes(arrayObjs) {
     notes.appendChild(notesItem);
     return;
   }
+
   notes.innerHTML = "";
-  arrayObjs.forEach((item) => {
+  filteredNotes.forEach((item) => {
     // const item = arrayObjs[arrayObjs.length - 1];
     const notesItem = document.createElement("li");
     notesItem.classList.add("notes__item");
@@ -104,6 +117,7 @@ function initListeners() {
     item.addEventListener("click", (e) => {
       filterSelected.textContent = item.textContent; // меняем выбранный текст
       // filter.classList.remove("open");
+      renderNotes(notesObj); // перерисовываем заметки
     });
   });
 
