@@ -419,7 +419,7 @@ body.dark_theme .notes__item .options__pencil {
 }
 
 body.dark_theme .notes__item .options__trash {
-  cursor: var(--cursor-hand);
+  cursor: var(--cursor-hand-white);
 }
 
 .notes__item .options__trash:hover {
@@ -493,6 +493,10 @@ body.dark_theme .modal__input {
 }
 
 .modal__input-error {
+  border: 2px solid red;
+}
+
+body.dark_theme .modal__input-error {
   border: 2px solid red;
 }
 
