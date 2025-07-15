@@ -302,6 +302,8 @@ body.dark_theme .add__btn {
   cursor: var(--cursor-hand);
   padding: 17px 0;
   position: relative;
+
+  text-transform: uppercase;
 }
 
 body.dark_theme .notes__item {
@@ -347,6 +349,15 @@ body.dark_theme .notes__item {
 
 .notes__item.checked .notes__item-check img {
   display: block;
+}
+
+.notes__item.checked .notes__descr {
+  text-decoration: line-through;
+  color: rgba(37, 37, 37, 0.5);
+}
+
+body.dark_theme .notes__item.checked .notes__descr {
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .notes__empty {
