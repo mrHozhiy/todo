@@ -179,24 +179,32 @@ function initListeners() {
       input.style.width = "80%";
 
       let isEdited = false;
-      console.log(input);
+
+      function finishEdit(input, noteId) {
+        saveEdit(noteId, input.value);
+        renderNotes(notesObj);
+      }
+
+      function blurOut(input) {
+        isEdited = true;
+        input.blur();
+        console.log("isEdited", isEdited);
+      }
+
+      // replace text with input
       noteTextEl.replaceWith(input);
       input.focus();
 
       // save on Enter key
       input.addEventListener("keydown", (e) => {
         if (e.key === "Enter") {
-          saveEdit(noteId, input.value);
-
-          isEdited = true;
-          input.blur();
-
-          renderNotes(notesObj);
+          blurOut(input);
+          finishEdit(input, noteId);
         }
+
         // cancel edit on Escape key
         if (e.key === "Escape") {
-          isEdited = true;
-          input.blur();
+          blurOut(input);
           renderNotes(notesObj);
         }
       });
@@ -204,8 +212,7 @@ function initListeners() {
       // save out of focus
       input.addEventListener("blur", () => {
         if (!isEdited) {
-          saveEdit(noteId, input.value);
-          renderNotes(notesObj);
+          finishEdit(input, noteId);
         }
       });
     }
