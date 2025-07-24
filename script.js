@@ -212,9 +212,7 @@ function initListeners() {
 
     // remove note
     if (target.classList.contains("options__trash")) {
-      let updatedObj = notesObj.filter((note) => note.id !== noteId);
-
-      notesObj = updatedObj;
+      notesObj = notesObj.filter((note) => note.id !== noteId);
 
       saveNotesToLocalStorage(notesObj);
       renderNotes(notesObj);
