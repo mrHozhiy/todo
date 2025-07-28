@@ -102,6 +102,17 @@ function renderNotes(arrayObjs) {
   });
 }
 
+function saveEdit(id, newValue) {
+  if (newValue.trim() === "") return;
+
+  notesObj = notesObj.map((note) =>
+    note.id === id ? { ...note, note: newValue } : note
+  );
+
+  saveNotesToLocalStorage(notesObj);
+  // renderNotes(notesObj);
+}
+
 function initListeners() {
   // Filter list
   filter.addEventListener("click", (e) => {
@@ -153,18 +164,65 @@ function initListeners() {
     renderNotes(notesObj);
   });
 
-  // remove note
   notes.addEventListener("click", (e) => {
     let target = e.target;
     const noteElement = target.closest(".notes__item");
     const noteId = noteElement.getAttribute("data-id");
-    // const noteText = noteElement.querySelector(".notes__descr").textContent;
+    const noteTextEl = noteElement.querySelector(".notes__descr");
+    const originalText = noteTextEl.textContent;
 
+    if (target.classList.contains("options__pencil")) {
+      const input = document.createElement("input");
+      input.type = "text";
+      input.value = originalText;
+      input.classList.add("edit-note-input");
+      input.style.width = "80%";
+
+      let isEdited = false;
+
+      function finishEdit(input, noteId) {
+        saveEdit(noteId, input.value);
+        renderNotes(notesObj);
+      }
+
+      function blurOut(input) {
+        isEdited = true;
+        input.blur();
+        console.log("isEdited", isEdited);
+      }
+
+      // replace text with input
+      noteTextEl.replaceWith(input);
+      input.focus();
+
+      // save on Enter key
+      input.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+          blurOut(input);
+          finishEdit(input, noteId);
+        }
+
+        // cancel edit on Escape key
+        if (e.key === "Escape") {
+          blurOut(input);
+          renderNotes(notesObj);
+        }
+      });
+
+      // save out of focus
+      input.addEventListener("blur", () => {
+        if (!isEdited) {
+          finishEdit(input, noteId);
+        }
+      });
+    }
+
+    // remove note
     if (target.classList.contains("options__trash")) {
-      let updatedObj = notesObj.filter((note) => note.id !== noteId);
+      notesObj = notesObj.filter((note) => note.id !== noteId);
 
-      notesObj = updatedObj;
       saveNotesToLocalStorage(notesObj);
+      renderNotes(notesObj);
     }
 
     // check note
@@ -174,9 +232,8 @@ function initListeners() {
       );
 
       saveNotesToLocalStorage(notesObj);
+      renderNotes(notesObj);
     }
-
-    renderNotes(notesObj);
   });
 
   // search note

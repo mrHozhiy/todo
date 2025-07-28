@@ -360,6 +360,22 @@ body.dark_theme .notes__item.checked .notes__descr {
   color: rgba(255, 255, 255, 0.5);
 }
 
+.edit-note-input {
+  font-family: var(--font-family);
+  font-size: 16px;
+  padding: 4px;
+  border: 1px solid var(--purple);
+  border-radius: 4px;
+  background: transparent;
+  color: var(--purple);
+}
+
+body.dark_theme .edit-note-input {
+  border: 1px solid var(--white);
+  color: var(--white);
+  background: var(--black);
+}
+
 .notes__empty {
   display: flex;
   justify-content: center;
